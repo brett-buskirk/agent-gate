@@ -1,6 +1,6 @@
 {
   "name": "@brett.buskirk/agent-gate",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Guardrail checks for AI-agent-generated pull requests",
   "type": "commonjs",
   "bin": {

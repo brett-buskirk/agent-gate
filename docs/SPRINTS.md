@@ -26,8 +26,8 @@
 - [x] Test coverage ≥ 90% enforced in CI (99.7% stmts / 92.8% branches; 58 tests)
 - [x] Nicer CLI output — ANSI color, NO_COLOR-aware, colored severity labels
 - [x] `agentgate init` command scaffolds `.agentgate.yml`, exits 1 if exists
-- [ ] `--base-branch` auto-detection (default to default branch)
-- [ ] GitHub Marketplace draft
+- [x] `--base` auto-detection (origin/HEAD → main/master fallback chain)
+- [x] GitHub Marketplace prep — valid branding, release runbook (docs/RELEASING.md)
 
 ## Future — v2
 

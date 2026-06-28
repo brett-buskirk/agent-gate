@@ -9,6 +9,7 @@ export default defineConfig({
         'src/engine.ts',
         'src/config/**',
         'src/diff/parse.ts',
+        'src/diff/detectBase.ts',
         'src/utils/**',
       ],
       thresholds: {

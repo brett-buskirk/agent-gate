@@ -20,6 +20,8 @@ rules:
       - "*.mjs"
       - "*.yml"
       - "*.yaml"
+      - "*.config.ts"
+      - "*.config.mjs"
       - ".editorconfig"
       - ".prettierrc"
       - ".gitignore"

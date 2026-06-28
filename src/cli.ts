@@ -2,27 +2,33 @@
 import { Command } from 'commander';
 import { loadConfig } from './config/load';
 import { GitDiffProvider } from './diff/git';
+import { detectBaseBranch } from './diff/detectBase';
 import { runEngine } from './engine';
 import { reportCli } from './report/json';
 import { runInit } from './init';
+import { c } from './utils/color';
 
 const program = new Command();
 
 program
   .name('agent-gate')
   .description('Guardrail checks for AI-agent-generated pull requests')
-  .version('0.1.0');
+  .version('0.2.0');
 
 program
   .command('check')
   .description('Run guardrail checks against a diff')
-  .option('-b, --base <ref>', 'Base git ref to diff against', 'main')
+  .option('-b, --base <ref>', 'Base git ref to diff against (auto-detects the default branch if omitted)')
   .option('-c, --config <path>', 'Path to config file', '.agentgate.yml')
   .option('--json', 'Output results as JSON')
-  .action(async (opts: { base: string; config: string; json: boolean }) => {
+  .action(async (opts: { base?: string; config: string; json: boolean }) => {
     try {
       const config = loadConfig(opts.config);
-      const provider = new GitDiffProvider(opts.base);
+      const base = opts.base ?? detectBaseBranch();
+      if (!opts.base && !opts.json) {
+        console.log(c.dim(`Auto-detected base branch: ${base}`));
+      }
+      const provider = new GitDiffProvider(base);
       const diff = await provider.getDiff();
       const result = runEngine(diff, config);
       reportCli(result, diff, opts.json);

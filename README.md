@@ -1,5 +1,9 @@
 # AgentGate
 
+[![CI](https://github.com/brett-buskirk/agent-gate/actions/workflows/ci.yml/badge.svg)](https://github.com/brett-buskirk/agent-gate/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/@brett.buskirk/agent-gate)](https://www.npmjs.com/package/@brett.buskirk/agent-gate)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 **Guardrail checks for AI-agent-generated pull requests.**
 
 AgentGate runs in CI on every PR, inspects the diff for the risk signals that AI agents commonly introduce — leaked secrets, out-of-scope changes, missing tests, surprise dependencies — posts a structured review comment, and sets a pass/fail check. Your team gets eyes on agent work without rubber-stamping it.
@@ -10,7 +14,7 @@ AgentGate runs in CI on every PR, inspects the diff for the risk signals that AI
 
 ## Status
 
-**v0.1.0 — published.** All six rules implemented and tested. Action bundled (`dist/index.js`). Dogfood CI runs AgentGate on its own PRs. Published to npm as [`@brett.buskirk/agent-gate`](https://www.npmjs.com/package/@brett.buskirk/agent-gate).
+**v0.2.0.** All six rules implemented and tested (99%+ coverage, enforced in CI). Action bundled (`dist/index.js`). Dogfood CI runs AgentGate on its own PRs. CLI auto-detects your default branch and ships an `init` scaffolder. Published to npm as [`@brett.buskirk/agent-gate`](https://www.npmjs.com/package/@brett.buskirk/agent-gate).
 
 ---
 
@@ -28,24 +32,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: brett-buskirk/agent-gate@v1
+      - uses: brett-buskirk/agent-gate@v0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
+
+> Pin to an exact release (`@v0.1.0`) for reproducible builds, or track the moving `@v0` tag for the latest v0.x.
 
 Add a `.agentgate.yml` to your repo to configure it (or skip it — the defaults are sane).
 
 ### CLI
 
 ```bash
-npx @brett.buskirk/agent-gate check --base main
+# Auto-detects your default branch (main, master, or origin/HEAD)
+npx @brett.buskirk/agent-gate check
 ```
 
 Or install globally:
 
 ```bash
 npm install -g @brett.buskirk/agent-gate
-agent-gate check --base main --json
+agent-gate check                  # diff against the auto-detected default branch
+agent-gate check --base develop   # or pick a base explicitly
+agent-gate check --json           # machine-readable output
+agent-gate init                   # scaffold a .agentgate.yml
 ```
 
 ---
