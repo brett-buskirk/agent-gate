@@ -31,6 +31,16 @@ jobs:
       - name: Verify action bundle builds
         run: npm run build:action
 
+      - name: Verify demo assets are up to date
+        run: |
+          npm run build
+          npm run demo
+          if [ -n "$(git status --porcelain docs/assets)" ]; then
+            echo "::error::Demo assets are stale — run 'npm run build && npm run demo' and commit docs/assets."
+            git --no-pager diff -- docs/assets
+            exit 1
+          fi
+
   agentgate:
     name: AgentGate
     runs-on: ubuntu-latest
