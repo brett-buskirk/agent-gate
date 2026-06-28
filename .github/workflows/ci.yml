@@ -7,7 +7,7 @@ on:
 
 jobs:
   ci:
-    name: Typecheck & Test
+    name: Typecheck, Test & Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,3 +24,24 @@ jobs:
 
       - name: Test
         run: npm test
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Verify action bundle builds
+        run: npm run build:action
+
+  agentgate:
+    name: AgentGate
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    needs: ci
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ./
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}

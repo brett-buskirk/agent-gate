@@ -14,12 +14,11 @@
 - [x] GitHub repo: labels, milestones, project, issue templates
 - [x] .agentgate.yml dogfood config
 
-## Sprint 2 — Action Bundle + Dogfood CI (next)
+## Sprint 2 — Action Bundle + Dogfood CI (June 2026)
 
-- [ ] `npm run build:action` → `dist/index.js` committed
-- [ ] CI workflow updated: add lint step + AgentGate dogfood step (`uses: ./`)
-- [ ] Branch protection on `main` (require CI green)
-- [ ] README: quickstart, config reference, PR comment screenshot
+- [x] `npm run build:action` → `dist/index.js` committed
+- [x] CI workflow updated: typecheck, test, lint, bundle verify, AgentGate dogfood step (`uses: ./`)
+- [x] Branch protection on `main` (require CI green)
 - [ ] npm publish (0.1.0)
 
 ## Sprint 3 — Polish + v1.0

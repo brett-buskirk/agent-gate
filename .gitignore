@@ -3,4 +3,10 @@ node_modules/
 .env
 .env.*
 coverage/
-licenses.txt
+
+# tsc output — published via npm, not committed to git
+# ncc Action bundle (dist/index.js etc.) is committed so GitHub can run it
+dist/*
+!dist/index.js
+!dist/index.js.map
+!dist/sourcemap-register.js

@@ -10,7 +10,7 @@ AgentGate runs in CI on every PR, inspects the diff for the risk signals that AI
 
 ## Status
 
-**v0.1.0 — active development.** Rules and CLI are implemented and tested. The Action bundle and npm publish are next.
+**v0.1.0 — active development.** All six rules implemented and tested. Action bundled (`dist/index.js`). Dogfood CI runs AgentGate on its own PRs. npm publish next.
 
 ---
 
