@@ -4,6 +4,7 @@ import { loadConfig } from './config/load';
 import { GitDiffProvider } from './diff/git';
 import { runEngine } from './engine';
 import { reportCli } from './report/json';
+import { runInit } from './init';
 
 const program = new Command();
 
@@ -33,6 +34,14 @@ program
       console.error('Error:', err instanceof Error ? err.message : String(err));
       process.exit(2);
     }
+  });
+
+program
+  .command('init')
+  .description('Scaffold a .agentgate.yml config file in the current directory')
+  .option('-c, --config <path>', 'Output path for the config file', '.agentgate.yml')
+  .action((opts: { config: string }) => {
+    runInit(opts.config);
   });
 
 program.parse();

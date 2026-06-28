@@ -42,6 +42,19 @@ describe('scope rule', () => {
     expect(findings.length).toBeGreaterThan(0);
   });
 
+  it('flags a file outside the allow list that is not in the deny list', () => {
+    const config = ConfigSchema.parse({
+      version: 1,
+      rules: { scope: { allow: ['src/**', 'test/**'], deny: [] } },
+    });
+    const diff = fixture('dirty-scope-allow.diff');
+    const findings = scopeRule.run(diff, config);
+    expect(findings).toHaveLength(1);
+    expect(findings[0].file).toBe('scripts/deploy.sh');
+    expect(findings[0].message).toMatch(/outside the allowed scope/);
+    expect(findings[0].suggestion).toMatch(/allow list/);
+  });
+
   it('passes files that match the allow list', () => {
     const config = ConfigSchema.parse({
       version: 1,

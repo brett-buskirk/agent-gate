@@ -1,11 +1,6 @@
 import type { EngineResult } from '../engine';
 import type { DiffModel } from '../diff/parse';
-
-const SEVERITY_ICON: Record<string, string> = {
-  error: '❌',
-  warning: '⚠️ ',
-  info: 'ℹ️ ',
-};
+import { c } from '../utils/color';
 
 export function reportCli(result: EngineResult, diff: DiffModel, asJson = false): void {
   if (asJson) {
@@ -19,22 +14,22 @@ export function reportCli(result: EngineResult, diff: DiffModel, asJson = false)
 
   const verdictLine =
     verdict === 'pass'
-      ? '✅  AgentGate: passed'
+      ? c.green(c.bold('✅  AgentGate: passed'))
       : verdict === 'warn'
-        ? '⚠️   AgentGate: warnings'
-        : '❌  AgentGate: blocked';
+        ? c.yellow(c.bold('⚠️   AgentGate: warnings'))
+        : c.red(c.bold('❌  AgentGate: blocked'));
 
   console.log(`\n${verdictLine}`);
   console.log(
-    `     Files: ${diff.files.length}  |  Lines: +${diff.totalAdded} -${diff.totalDeleted}`,
+    c.dim(`     Files: ${diff.files.length}  |  Lines: +${diff.totalAdded} -${diff.totalDeleted}`),
   );
 
-  if (counts.error > 0) console.log(`     Errors:   ${counts.error}`);
-  if (counts.warning > 0) console.log(`     Warnings: ${counts.warning}`);
+  if (counts.error > 0) console.log(c.red(`     Errors:   ${counts.error}`));
+  if (counts.warning > 0) console.log(c.yellow(`     Warnings: ${counts.warning}`));
   if (counts.info > 0) console.log(`     Info:     ${counts.info}`);
 
   if (findings.length === 0) {
-    console.log('\n  No issues found.\n');
+    console.log(c.dim('\n  No issues found.\n'));
     return;
   }
 
@@ -47,12 +42,18 @@ export function reportCli(result: EngineResult, diff: DiffModel, asJson = false)
   }
 
   for (const [ruleId, ruleFindings] of byRule) {
-    const icon = SEVERITY_ICON[ruleFindings[0].severity] ?? '  ';
-    console.log(`  ${icon} [${ruleId}]`);
+    const sev = ruleFindings[0].severity;
+    const label =
+      sev === 'error'
+        ? c.red(`[${ruleId}]`)
+        : sev === 'warning'
+          ? c.yellow(`[${ruleId}]`)
+          : c.cyan(`[${ruleId}]`);
+    console.log(`  ${label}`);
     for (const f of ruleFindings) {
       const loc = f.file ? (f.line ? `${f.file}:${f.line}` : f.file) : '';
-      console.log(`      ${loc ? `${loc}  ` : ''}${f.message}`);
-      if (f.suggestion) console.log(`      → ${f.suggestion}`);
+      console.log(`      ${loc ? c.dim(`${loc}  `) : ''}${f.message}`);
+      if (f.suggestion) console.log(c.dim(`      → ${f.suggestion}`));
     }
     console.log('');
   }
