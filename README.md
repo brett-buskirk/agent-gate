@@ -13,6 +13,8 @@ AgentGate runs in CI on every PR, inspects the diff for the risk signals that AI
 
 > 💡 **Not an engineer?** Read the [plain-language overview](docs/ABOUT.md) — what AgentGate does and why it matters, no jargon.
 
+> 📝 **The story behind it:** [_A Seatbelt for AI-Generated Pull Requests_](https://medium.com/@brett-buskirk/a-seatbelt-for-ai-generated-pull-requests-5f70d42f8a75) — why agent PRs need a guardrail, how it was built, and where it's headed.
+
 ---
 
 ## Status
