@@ -1,6 +1,6 @@
 # Roadmap
 
-## Shipped (v0.1.0 → v0.2.1)
+## Shipped (v0.1.0 → v1.0.0)
 
 - [x] All six MVP rules with fixture tests — `secrets`, `scope`, `diff_size`, `tests_required`, `dependencies`, `dangerous_patterns`
 - [x] CLI — `agent-gate check` (default-branch auto-detection, `--json`) and `agent-gate init`
@@ -10,11 +10,15 @@
 - [x] Test-coverage gate in CI (≥ 90%, currently 99%+)
 - [x] README quickstart + full config reference
 
-## v1.0.0 — Launch (in progress)
+## v1.0.0 — Launch ✅ (June 2026)
 
-- [ ] GitHub Marketplace listing (publishing as *AgentGate - AI PR Guardrails*)
-- [ ] README demo image — CLI output and a sample PR comment
-- [ ] First external adopter / write-up
+- [x] GitHub Marketplace listing — [AgentGate - AI PR Guardrails](https://github.com/marketplace/actions/agentgate-ai-pr-guardrails)
+- [x] README demo image — CLI output and a sample PR comment (freshness-checked in CI)
+- [x] First **stable** release tagged `v1.0.0`
+
+## Next up (post-launch)
+
+- [ ] First external adopter + write-up (Medium piece; promote on brett-buskirk.dev)
 
 ## v2.0 — LLM Intent Check *(headline feature)*
 

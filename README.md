@@ -3,6 +3,7 @@
 [![CI](https://github.com/brett-buskirk/agent-gate/actions/workflows/ci.yml/badge.svg)](https://github.com/brett-buskirk/agent-gate/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/@brett.buskirk/agent-gate)](https://www.npmjs.com/package/@brett.buskirk/agent-gate)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![GitHub Marketplace](https://img.shields.io/badge/Marketplace-AgentGate-2ea44f?logo=githubactions&logoColor=white)](https://github.com/marketplace/actions/agentgate-ai-pr-guardrails)
 
 **Guardrail checks for AI-agent-generated pull requests.**
 
@@ -16,7 +17,7 @@ AgentGate runs in CI on every PR, inspects the diff for the risk signals that AI
 
 ## Status
 
-**v0.2.1.** All six rules implemented and tested (99%+ coverage, enforced in CI). Action bundled (`dist/index.js`). Dogfood CI runs AgentGate on its own PRs. CLI auto-detects your default branch and ships an `init` scaffolder. Published to npm as [`@brett.buskirk/agent-gate`](https://www.npmjs.com/package/@brett.buskirk/agent-gate).
+**v1.0.0 — stable.** All six rules implemented and tested (99%+ coverage, enforced in CI). Action bundled (`dist/index.js`) and listed on the [GitHub Marketplace](https://github.com/marketplace/actions/agentgate-ai-pr-guardrails). Dogfood CI runs AgentGate on its own PRs. CLI auto-detects your default branch and ships an `init` scaffolder. Published to npm as [`@brett.buskirk/agent-gate`](https://www.npmjs.com/package/@brett.buskirk/agent-gate).
 
 ---
 
@@ -44,12 +45,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: brett-buskirk/agent-gate@v0
+      - uses: brett-buskirk/agent-gate@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-> Pin to an exact release (`@v0.2.1`) for reproducible builds, or track the moving `@v0` tag for the latest v0.x.
+> Pin to an exact release (`@v1.0.0`) for reproducible builds, or track the moving `@v1` tag for the latest v1.x.
 
 Add a `.agentgate.yml` to your repo to configure it (or skip it — the defaults are sane).
 
