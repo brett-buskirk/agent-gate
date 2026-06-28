@@ -1,4 +1,18 @@
-const enabled = process.stdout.isTTY && !process.env['NO_COLOR'];
+/**
+ * Decide whether ANSI color should be emitted. Honors the `NO_COLOR` and
+ * `FORCE_COLOR` conventions, then falls back to TTY detection.
+ */
+export function colorEnabled(
+  env: NodeJS.ProcessEnv = process.env,
+  stream: { isTTY?: boolean } = process.stdout,
+): boolean {
+  if (env['NO_COLOR']) return false;
+  const force = env['FORCE_COLOR'];
+  if (force !== undefined) return force !== '0';
+  return stream.isTTY === true;
+}
+
+const enabled = colorEnabled();
 
 function wrap(code: number, s: string): string {
   return enabled ? `\x1b[${code}m${s}\x1b[0m` : s;

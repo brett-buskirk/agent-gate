@@ -34392,6 +34392,7 @@ function setCheckOutput(result) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.buildBody = buildBody;
 exports.upsertComment = upsertComment;
 const github_1 = __nccwpck_require__(3228);
 const MARKER = '<!-- agentgate -->';

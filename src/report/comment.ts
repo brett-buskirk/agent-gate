@@ -4,7 +4,7 @@ import type { DiffModel } from '../diff/parse';
 
 const MARKER = '<!-- agentgate -->';
 
-function buildBody(result: EngineResult, diff: DiffModel): string {
+export function buildBody(result: EngineResult, diff: DiffModel): string {
   const { verdict, findings } = result;
 
   const header =

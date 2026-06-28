@@ -20,6 +20,16 @@ AgentGate runs in CI on every PR, inspects the diff for the risk signals that AI
 
 ---
 
+## See it in action
+
+When an agent opens a PR that leaks a key, edits a workflow it shouldn't touch, slips in a dependency, and skips tests, AgentGate blocks the merge and explains exactly why:
+
+![AgentGate CLI output](docs/assets/cli-demo.svg)
+
+In CI it posts the same verdict as a single PR comment — here's a [sample comment](docs/assets/sample-pr-comment.md).
+
+---
+
 ## Quickstart
 
 ### GitHub Action
@@ -140,7 +150,7 @@ rules:
 
 ## PR Comment
 
-AgentGate posts a single comment on the PR and updates it in place on re-runs — never spams. The comment shows the overall verdict, a rule-by-rule summary table, and expandable findings with file locations and actionable suggestions.
+AgentGate posts a single comment on the PR and updates it in place on re-runs — never spams. The comment shows the overall verdict, a rule-by-rule summary table, and expandable findings with file locations and actionable suggestions. See a [sample comment](docs/assets/sample-pr-comment.md).
 
 ---
 

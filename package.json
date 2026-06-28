@@ -16,6 +16,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "build:action": "ncc build src/action.ts -o dist --source-map --license licenses.txt",
+    "demo": "node scripts/gen-demo.js",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",

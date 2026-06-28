@@ -1,0 +1,40 @@
+diff --git a/src/payments.ts b/src/payments.ts
+index 1111111..2222222 100644
+--- a/src/payments.ts
++++ b/src/payments.ts
+@@ -8,6 +8,13 @@ export class PaymentProcessor {
+   async charge(amount: number): Promise<Receipt> {
+     return this.gateway.charge(amount);
+   }
++
++  async refundAll(): Promise<void> {
++    const AWS_ACCESS_KEY_ID = 'AKIAIOSFODNN7EXAMPLE';
++    const handler = eval('this.gateway.refundHandler');
++    await handler.run(AWS_ACCESS_KEY_ID);
++  }
+ }
+diff --git a/.github/workflows/release.yml b/.github/workflows/release.yml
+new file mode 100644
+index 0000000..3333333
+--- /dev/null
++++ b/.github/workflows/release.yml
+@@ -0,0 +1,9 @@
++name: Release
++on:
++  push:
++    tags: ['v*']
++jobs:
++  publish:
++    runs-on: ubuntu-latest
++    steps:
++      - run: npm publish
+diff --git a/package.json b/package.json
+index 4444444..5555555 100644
+--- a/package.json
++++ b/package.json
+@@ -15,6 +15,7 @@
+   "dependencies": {
+     "commander": "^13.1.0",
++    "left-pad": "^1.3.0",
+     "zod": "^3.24.2"
+   },

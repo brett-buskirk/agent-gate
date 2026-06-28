@@ -14,6 +14,7 @@ rules:
       - "test/**"
       - "docs/**"
       - "bin/**"
+      - "scripts/**"
       - ".github/**"
       - "*.json"
       - "*.md"
