@@ -60,6 +60,14 @@ export const ConfigSchema = z.object({
             .default(['eval\\(', '--no-verify', 'child_process\\.exec\\(']),
         })
         .default({}),
+      intent: z
+        .object({
+          enabled: z.boolean().default(false),
+          severity: SeveritySchema.default('warning'),
+          model: z.string().default('claude-haiku-4-5-20251001'),
+          max_diff_bytes: z.number().int().positive().default(60000),
+        })
+        .default({}),
     })
     .default({}),
 });

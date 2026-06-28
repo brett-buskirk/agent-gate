@@ -1,7 +1,7 @@
 import { rules } from './rules';
 import type { Config } from './config/schema';
 import type { DiffModel } from './diff/parse';
-import type { Finding, Severity } from './rules/types';
+import type { Finding, Severity, RuleContext } from './rules/types';
 
 export type Verdict = 'pass' | 'warn' | 'fail';
 
@@ -21,8 +21,13 @@ function computeVerdict(
   return 'pass';
 }
 
-export function runEngine(diff: DiffModel, config: Config): EngineResult {
-  const findings = rules.flatMap((rule) => rule.run(diff, config));
+export async function runEngine(
+  diff: DiffModel,
+  config: Config,
+  context?: RuleContext,
+): Promise<EngineResult> {
+  const results = await Promise.all(rules.map((rule) => rule.run(diff, config, context)));
+  const findings = results.flat();
 
   const counts = findings.reduce(
     (acc, f) => {

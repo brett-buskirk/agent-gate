@@ -2,7 +2,7 @@ import type { Rule, Finding } from './types';
 import type { DiffModel } from '../diff/parse';
 import type { Config } from '../config/schema';
 
-export const diffSizeRule: Rule = {
+export const diffSizeRule = {
   id: 'diff_size',
   description: 'Flag PRs that exceed file or line count thresholds',
 
@@ -33,4 +33,4 @@ export const diffSizeRule: Rule = {
 
     return findings;
   },
-};
+} satisfies Rule;

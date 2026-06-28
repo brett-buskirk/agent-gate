@@ -3,7 +3,7 @@ import type { Rule, Finding } from './types';
 import type { DiffModel } from '../diff/parse';
 import type { Config } from '../config/schema';
 
-export const testsRequiredRule: Rule = {
+export const testsRequiredRule = {
   id: 'tests_required',
   description: 'Warn if source files changed but no test files were added or modified',
 
@@ -27,4 +27,4 @@ export const testsRequiredRule: Rule = {
 
     return [];
   },
-};
+} satisfies Rule;

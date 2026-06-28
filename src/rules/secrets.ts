@@ -28,7 +28,7 @@ const SECRET_PATTERNS: Array<{ name: string; pattern: RegExp }> = [
   },
 ];
 
-export const secretsRule: Rule = {
+export const secretsRule = {
   id: 'secrets',
   description: 'Scan added lines for leaked credentials and secrets',
 
@@ -63,4 +63,4 @@ export const secretsRule: Rule = {
 
     return findings;
   },
-};
+} satisfies Rule;

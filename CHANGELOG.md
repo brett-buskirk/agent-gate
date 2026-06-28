@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- **`intent` rule (opt-in LLM check)** — uses the Anthropic API to judge whether a PR's diff matches its stated description, flagging changes that go beyond the intent. Off by default; needs `ANTHROPIC_API_KEY` (env var or the `anthropic-api-key` Action input). Configurable `model` and `max_diff_bytes`. Local use via `agent-gate check --intent <text>` / `--intent-file <path>`.
+- Rules may now be asynchronous and receive optional PR context (`RuleContext`), enabling LLM-backed and context-aware rules. The deterministic rules are unchanged.
+
 ## [1.0.0] - 2026-06-28
 
 First stable release. The rule set and `.agentgate.yml` schema are now considered stable, and the Action is listed on the [GitHub Marketplace](https://github.com/marketplace/actions/agentgate-ai-pr-guardrails).

@@ -5,6 +5,7 @@ import { diffSizeRule } from './diffSize';
 import { testsRequiredRule } from './testsRequired';
 import { dependenciesRule } from './dependencies';
 import { dangerousPatternsRule } from './dangerousPatterns';
+import { intentRule } from './intent';
 
 export const rules: Rule[] = [
   secretsRule,
@@ -13,6 +14,7 @@ export const rules: Rule[] = [
   testsRequiredRule,
   dependenciesRule,
   dangerousPatternsRule,
+  intentRule,
 ];
 
 export type { Rule, Finding, DiffModel, DiffFile, DiffChunk, DiffLine, Severity } from './types';

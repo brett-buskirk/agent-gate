@@ -2,7 +2,7 @@ import type { Rule, Finding } from './types';
 import type { DiffModel } from '../diff/parse';
 import type { Config } from '../config/schema';
 
-export const dependenciesRule: Rule = {
+export const dependenciesRule = {
   id: 'dependencies',
   description: 'Flag added or changed entries in dependency manifests',
 
@@ -28,4 +28,4 @@ export const dependenciesRule: Rule = {
 
     return findings;
   },
-};
+} satisfies Rule;

@@ -2,7 +2,7 @@ import type { Rule, Finding } from './types';
 import type { DiffModel } from '../diff/parse';
 import type { Config } from '../config/schema';
 
-export const dangerousPatternsRule: Rule = {
+export const dangerousPatternsRule = {
   id: 'dangerous_patterns',
   description: 'Flag added lines matching a configurable regex denylist',
 
@@ -46,4 +46,4 @@ export const dangerousPatternsRule: Rule = {
 
     return findings;
   },
-};
+} satisfies Rule;
