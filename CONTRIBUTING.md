@@ -6,9 +6,9 @@ Thank you for your interest. AgentGate is the safety net for AI-generated PRs �
 
 1. Fork the repo and create a branch: `git checkout -b feat/my-change`
 2. Make your changes (see conventions below)
-3. Run `npm run typecheck && npm test` — both must pass
+3. Run `npm run typecheck && npm test && npm run lint` — all must pass
 4. Push and open a PR against `main`
-5. CI will run typecheck + tests; AgentGate will also run on your PR
+5. CI runs typecheck, tests (with a ≥ 90% coverage gate), and lint; AgentGate also runs on your PR
 
 ## Adding a new rule
 

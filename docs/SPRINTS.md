@@ -14,7 +14,7 @@
 - [x] GitHub repo: labels, milestones, project, issue templates
 - [x] .agentgate.yml dogfood config
 
-## Sprint 2 — Action Bundle + Dogfood CI (June 2026)
+## Sprint 2 — Action Bundle + Dogfood CI ✅ (June 2026)
 
 - [x] `npm run build:action` → `dist/index.js` committed
 - [x] CI workflow updated: typecheck, test, lint, bundle verify, AgentGate dogfood step (`uses: ./`)
@@ -23,7 +23,7 @@
 
 ## Sprint 3 — Polish + v1.0 ✅ (June 2026)
 
-- [x] Test coverage ≥ 90% enforced in CI (99.7% stmts / 92.8% branches; 58 tests)
+- [x] Test coverage ≥ 90% enforced in CI (99%+ stmts; 62 tests)
 - [x] Nicer CLI output — ANSI color, NO_COLOR-aware, colored severity labels
 - [x] `agentgate init` command scaffolds `.agentgate.yml`, exits 1 if exists
 - [x] `--base` auto-detection (origin/HEAD → main/master fallback chain)

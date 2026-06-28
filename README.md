@@ -10,11 +10,13 @@ AgentGate runs in CI on every PR, inspects the diff for the risk signals that AI
 
 > Built by [Brett Buskirk LLC](https://brett-buskirk.dev) as part of the **Agentic Development Workflow Setup** service — a productized safety net for teams shipping with AI coding agents.
 
+> 💡 **Not an engineer?** Read the [plain-language overview](docs/ABOUT.md) — what AgentGate does and why it matters, no jargon.
+
 ---
 
 ## Status
 
-**v0.2.0.** All six rules implemented and tested (99%+ coverage, enforced in CI). Action bundled (`dist/index.js`). Dogfood CI runs AgentGate on its own PRs. CLI auto-detects your default branch and ships an `init` scaffolder. Published to npm as [`@brett.buskirk/agent-gate`](https://www.npmjs.com/package/@brett.buskirk/agent-gate).
+**v0.2.1.** All six rules implemented and tested (99%+ coverage, enforced in CI). Action bundled (`dist/index.js`). Dogfood CI runs AgentGate on its own PRs. CLI auto-detects your default branch and ships an `init` scaffolder. Published to npm as [`@brett.buskirk/agent-gate`](https://www.npmjs.com/package/@brett.buskirk/agent-gate).
 
 ---
 
@@ -37,7 +39,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-> Pin to an exact release (`@v0.1.0`) for reproducible builds, or track the moving `@v0` tag for the latest v0.x.
+> Pin to an exact release (`@v0.2.1`) for reproducible builds, or track the moving `@v0` tag for the latest v0.x.
 
 Add a `.agentgate.yml` to your repo to configure it (or skip it — the defaults are sane).
 
@@ -174,8 +176,10 @@ agent-gate/
     rules/                # Rule unit tests
     engine.test.ts
   docs/
-    DESIGN.md
-    SPRINTS.md
+    ABOUT.md              # plain-language overview (non-technical)
+    DESIGN.md             # architecture & internals
+    RELEASING.md          # release + Marketplace runbook
+    SPRINTS.md            # sprint plan
 ```
 
 ---

@@ -1,6 +1,6 @@
 # AgentGate — Claude Code Build Brief
 
-*Working name — confirm npm package and GitHub org availability before committing, and rename freely. Use this document as the repo's initial `CLAUDE.md`.*
+*Status: shipped as **AgentGate** — npm [`@brett.buskirk/agent-gate`](https://www.npmjs.com/package/@brett.buskirk/agent-gate), repo `brett-buskirk/agent-gate`, currently **v0.2.1**. This document is the original build brief, retained as the product spec; see [CHANGELOG](CHANGELOG.md) and [ROADMAP](ROADMAP.md) for current state, and the resolved decisions at the bottom.*
 
 ---
 
@@ -145,8 +145,8 @@ The Action runs on a PR, fetches the diff, evaluates the MVP rules per `.agentga
 - **Site:** promote to the Work section of brett-buskirk.dev (it upgrades the placeholder "agentic delivery" proof item into a real shipped tool) and link it from the Agentic Development Workflow service card.
 - Frame the README and write-up around the *service*, not just the code — every reader is a potential client.
 
-## To decide / placeholders
-- **Name** — confirm npm + GitHub org availability for "AgentGate" (or pick another); rename throughout.
-- **License** — recommend **MIT** (permissive → adoption).
-- **GitHub home** — `brett-buskirk/agentgate` or a dedicated project org.
-- **LLM check in v1?** — recommend no; ship deterministic v1 first, add as v2.
+## Decisions (resolved)
+- **Name** — **AgentGate**. npm package `@brett.buskirk/agent-gate` (scoped — the bare `agent-gate` was rejected as too similar to an existing `agentgate`); CLI bins `agent-gate` and `agentgate`. Marketplace listing name *AgentGate - AI PR Guardrails* (the bare "AgentGate" listing was taken).
+- **License** — **MIT**.
+- **GitHub home** — `brett-buskirk/agent-gate`.
+- **LLM check in v1?** — No. v1 is fully deterministic; the LLM intent check is the headline v2 feature (see [ROADMAP](ROADMAP.md)).
