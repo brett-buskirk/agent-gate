@@ -10,7 +10,7 @@ AgentGate runs in CI on every PR, inspects the diff for the risk signals that AI
 
 ## Status
 
-**v0.1.0 — active development.** All six rules implemented and tested. Action bundled (`dist/index.js`). Dogfood CI runs AgentGate on its own PRs. npm publish next.
+**v0.1.0 — published.** All six rules implemented and tested. Action bundled (`dist/index.js`). Dogfood CI runs AgentGate on its own PRs. Published to npm as [`@brett.buskirk/agent-gate`](https://www.npmjs.com/package/@brett.buskirk/agent-gate).
 
 ---
 
@@ -38,13 +38,13 @@ Add a `.agentgate.yml` to your repo to configure it (or skip it — the defaults
 ### CLI
 
 ```bash
-npx agent-gate check --base main
+npx @brett.buskirk/agent-gate check --base main
 ```
 
 Or install globally:
 
 ```bash
-npm install -g agent-gate
+npm install -g @brett.buskirk/agent-gate
 agent-gate check --base main --json
 ```
 

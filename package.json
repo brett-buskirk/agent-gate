@@ -1,14 +1,15 @@
 {
-  "name": "agent-gate",
+  "name": "@brett.buskirk/agent-gate",
   "version": "0.1.0",
   "description": "Guardrail checks for AI-agent-generated pull requests",
   "type": "commonjs",
   "bin": {
-    "agent-gate": "./lib/cli.js",
-    "agentgate": "./lib/cli.js"
+    "agent-gate": "./bin/agent-gate.js",
+    "agentgate": "./bin/agent-gate.js"
   },
   "main": "./lib/engine.js",
   "files": [
+    "bin",
     "lib",
     "action.yml"
   ],
@@ -56,7 +57,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/brett-buskirk/agent-gate.git"
+    "url": "git+https://github.com/brett-buskirk/agent-gate.git"
   },
   "bugs": {
     "url": "https://github.com/brett-buskirk/agent-gate/issues"
