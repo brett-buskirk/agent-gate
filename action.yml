@@ -1,4 +1,4 @@
-name: 'AgentGate'
+name: 'AgentGate - AI PR Guardrails'
 description: 'Guardrail checks for AI-agent-generated pull requests'
 author: 'Brett Buskirk'
 

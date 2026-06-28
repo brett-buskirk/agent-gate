@@ -52,17 +52,17 @@ The Action is **Marketplace-ready** (`action.yml` has a unique `name`, a
 is a one-time manual step in the GitHub UI — it **cannot** be done from the CLI
 because it requires accepting the Marketplace Developer Agreement.
 
-1. Accept the [GitHub Marketplace Developer Agreement](https://github.com/marketplace/agreements) (one time, per account/org).
-2. On the repo, go to **Releases → Draft a new release** (or edit the existing `v0.2.0` release).
+1. Accept the [GitHub Marketplace Developer Agreement](https://docs.github.com/en/site-policy/github-terms/github-marketplace-developer-agreement) (one time, per account/org). GitHub prompts you to accept it inline the first time you tick the publish box.
+2. On the repo, go to **Releases** and edit the latest release (e.g. `v0.2.1`).
 3. GitHub detects `action.yml` and shows a **"Publish this Action to the GitHub Marketplace"** checkbox — check it.
 4. Pick a primary and secondary **category** (e.g. *Code review*, *Security*).
-5. Resolve any validation warnings (the listing name must be unique across Marketplace — if "AgentGate" is taken, set a distinct listing name; the `uses:` path is unaffected).
+5. Resolve any validation warnings. The listing name (from `action.yml` `name:`) must be unique across Marketplace — plain "AgentGate" is taken (by Maos' accuracy-metric gate), so we list as **"AgentGate - AI PR Guardrails"**. The `uses:` path is unaffected by the display name.
 6. Publish the release.
 
-After listing, add the Marketplace badge to the README:
+After listing, add the Marketplace badge to the README (confirm the slug GitHub assigns):
 
 ```markdown
-[![GitHub Marketplace](https://img.shields.io/badge/Marketplace-AgentGate-green?logo=github)](https://github.com/marketplace/actions/agentgate)
+[![GitHub Marketplace](https://img.shields.io/badge/Marketplace-AgentGate-green?logo=github)](https://github.com/marketplace/actions/agentgate-ai-pr-guardrails)
 ```
 
 ## Release checklist

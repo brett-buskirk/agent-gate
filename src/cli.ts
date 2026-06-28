@@ -13,7 +13,7 @@ const program = new Command();
 program
   .name('agent-gate')
   .description('Guardrail checks for AI-agent-generated pull requests')
-  .version('0.2.0');
+  .version('0.2.1');
 
 program
   .command('check')
