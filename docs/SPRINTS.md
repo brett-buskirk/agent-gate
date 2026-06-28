@@ -19,7 +19,7 @@
 - [x] `npm run build:action` → `dist/index.js` committed
 - [x] CI workflow updated: typecheck, test, lint, bundle verify, AgentGate dogfood step (`uses: ./`)
 - [x] Branch protection on `main` (require CI green)
-- [ ] npm publish (0.1.0)
+- [x] npm publish — `@brett.buskirk/agent-gate@0.1.0`
 
 ## Sprint 3 — Polish + v1.0
 
