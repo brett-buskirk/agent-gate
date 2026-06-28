@@ -39,8 +39,6 @@ Add a `.agentgate.yml` to your repo to configure it (or skip it — the defaults
 
 ```bash
 npx agent-gate check --base main
-```
-
 Or install globally:
 
 ```bash
@@ -194,3 +192,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). New rules are the most welcome contribut
 ## License
 
 MIT — see [LICENSE](LICENSE).
+# test
