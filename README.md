@@ -160,6 +160,10 @@ rules:
 
 The `intent` rule is the one check that isn't deterministic: it asks Claude whether your diff actually does what the PR says it does — catching an agent that quietly did *more*, or *other*, than the description claims. *AI checking AI.*
 
+Here it is catching a PR titled *"fix a typo in the README"* that actually added a whole new module:
+
+![AgentGate's intent check flagging an out-of-scope PR](docs/assets/pr-comment-intent.png)
+
 It's **off by default**. Turn it on in `.agentgate.yml`:
 
 ```yaml
@@ -193,7 +197,15 @@ Notes:
 
 ## PR Comment
 
-AgentGate posts a single comment on the PR and updates it in place on re-runs — never spams. The comment shows the overall verdict, a rule-by-rule summary table, and expandable findings with file locations and actionable suggestions. See a [sample comment](docs/assets/sample-pr-comment.md).
+AgentGate posts a single comment on the PR and updates it in place on re-runs — never spams. It shows the overall verdict, a rule-by-rule summary table, and expandable findings with a file, line, and fix for each.
+
+When a PR trips multiple rules, every finding is grouped with its suggestion:
+
+![AgentGate blocking a PR with multiple findings](docs/assets/pr-comment-blocked.png)
+
+A clean PR passes quietly:
+
+![AgentGate passing a clean PR](docs/assets/pr-comment-passed.png)
 
 ---
 
