@@ -17,7 +17,7 @@ AgentGate runs in CI on every PR, inspects the diff for the risk signals that AI
 
 ## Status
 
-**v1.0.0 — stable.** All six rules implemented and tested (99%+ coverage, enforced in CI). Action bundled (`dist/index.js`) and listed on the [GitHub Marketplace](https://github.com/marketplace/actions/agentgate-ai-pr-guardrails). Dogfood CI runs AgentGate on its own PRs. CLI auto-detects your default branch and ships an `init` scaffolder. Published to npm as [`@brett.buskirk/agent-gate`](https://www.npmjs.com/package/@brett.buskirk/agent-gate).
+**v1.1.0 — stable.** Six deterministic rules plus an opt-in LLM intent check, tested (99%+ coverage, enforced in CI). Action bundled (`dist/index.js`) and listed on the [GitHub Marketplace](https://github.com/marketplace/actions/agentgate-ai-pr-guardrails). Dogfood CI runs AgentGate on its own PRs. CLI auto-detects your default branch and ships an `init` scaffolder. Published to npm as [`@brett.buskirk/agent-gate`](https://www.npmjs.com/package/@brett.buskirk/agent-gate).
 
 ---
 

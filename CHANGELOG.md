@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-06-28
+
 ### Added
 - **`intent` rule (opt-in LLM check)** — uses the Anthropic API to judge whether a PR's diff matches its stated description, flagging changes that go beyond the intent. Off by default; needs `ANTHROPIC_API_KEY` (env var or the `anthropic-api-key` Action input). Configurable `model` and `max_diff_bytes`. Local use via `agent-gate check --intent <text>` / `--intent-file <path>`.
 - Rules may now be asynchronous and receive optional PR context (`RuleContext`), enabling LLM-backed and context-aware rules. The deterministic rules are unchanged.
@@ -52,7 +54,8 @@ First stable release. The rule set and `.agentgate.yml` schema are now considere
 - Published to npm as [`@brett.buskirk/agent-gate`](https://www.npmjs.com/package/@brett.buskirk/agent-gate), exposing the `agent-gate` and `agentgate` CLI binaries.
 - Repo scaffolding: issue templates (bug, feature, rule request), PR template, branch protection on `main`.
 
-[Unreleased]: https://github.com/brett-buskirk/agent-gate/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/brett-buskirk/agent-gate/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/brett-buskirk/agent-gate/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/brett-buskirk/agent-gate/compare/v0.2.1...v1.0.0
 [0.2.1]: https://github.com/brett-buskirk/agent-gate/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/brett-buskirk/agent-gate/compare/v0.1.0...v0.2.0

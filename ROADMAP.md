@@ -20,7 +20,7 @@
 
 - [ ] First external adopter + write-up (Medium piece; promote on brett-buskirk.dev)
 
-## v1.1 — LLM Intent Check *(headline feature — shipping)*
+## v1.1 — LLM Intent Check ✅ *(headline feature, shipped)*
 
 The opt-in `intent` rule uses the Anthropic API to assess whether the PR's actual changes match its stated description — catching agents that went off-scope and did more (or other) than asked. *AI checking AI.* Requires `ANTHROPIC_API_KEY`.
 
