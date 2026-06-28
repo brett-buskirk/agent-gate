@@ -17,7 +17,7 @@ describe('summarizeDiff', () => {
     expect(summary).toContain('src/payments.ts');
     expect(summary).toContain('.github/workflows/release.yml');
     expect(summary).toContain('+'); // added-line marker
-    expect(summary).toContain('AKIAIOSFODNN7EXAMPLE'); // content of an added line
+    expect(summary).toContain('async refundAll'); // content of an added line
   });
 
   it('marks new files', () => {
