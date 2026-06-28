@@ -1,0 +1,53 @@
+version: 1
+fail_on: error
+comment: true
+
+rules:
+  secrets:
+    enabled: true
+    severity: error
+  scope:
+    enabled: true
+    severity: error
+    allow:
+      - "src/**"
+      - "test/**"
+      - "docs/**"
+      - ".github/**"
+      - "*.json"
+      - "*.md"
+      - "*.mjs"
+      - "*.yml"
+      - "*.yaml"
+      - ".editorconfig"
+      - ".prettierrc"
+      - ".gitignore"
+      - "LICENSE"
+      - "action.yml"
+    deny:
+      - "infra/**"
+      - "**/.env"
+  diff_size:
+    enabled: true
+    severity: warning
+    max_files: 30
+    max_lines: 800
+  tests_required:
+    enabled: true
+    severity: warning
+    src_globs:
+      - "src/**"
+    test_globs:
+      - "test/**"
+  dependencies:
+    enabled: true
+    severity: warning
+    manifests:
+      - "package.json"
+  dangerous_patterns:
+    enabled: true
+    severity: error
+    patterns:
+      - "eval\\("
+      - "--no-verify"
+      - "child_process\\.exec\\("

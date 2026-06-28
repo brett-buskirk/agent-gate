@@ -1,0 +1,65 @@
+{
+  "name": "agent-gate",
+  "version": "0.1.0",
+  "description": "Guardrail checks for AI-agent-generated pull requests",
+  "type": "commonjs",
+  "bin": {
+    "agent-gate": "./dist/cli.js",
+    "agentgate": "./dist/cli.js"
+  },
+  "main": "./dist/engine.js",
+  "files": [
+    "dist",
+    "action.yml"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "build:action": "ncc build src/action.ts -o dist --source-map --license licenses.txt",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint src test",
+    "lint:fix": "eslint src test --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "@actions/core": "^1.11.1",
+    "@actions/github": "^6.0.0",
+    "commander": "^13.1.0",
+    "js-yaml": "^4.1.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20.0.0",
+    "@vercel/ncc": "^0.38.3",
+    "eslint": "^9.0.0",
+    "prettier": "^3.3.0",
+    "typescript": "^5.4.0",
+    "vitest": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "keywords": [
+    "ai-agents",
+    "github-action",
+    "code-review",
+    "security",
+    "ci",
+    "guardrails"
+  ],
+  "author": "Brett Buskirk",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brett-buskirk/agent-gate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/brett-buskirk/agent-gate/issues"
+  },
+  "homepage": "https://github.com/brett-buskirk/agent-gate#readme"
+}

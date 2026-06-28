@@ -1,0 +1,29 @@
+diff --git a/.github/workflows/deploy.yml b/.github/workflows/deploy.yml
+new file mode 100644
+index 0000000..abcdef1
+--- /dev/null
++++ b/.github/workflows/deploy.yml
+@@ -0,0 +1,12 @@
++name: Deploy
++on:
++  push:
++    branches: [main]
++jobs:
++  deploy:
++    runs-on: ubuntu-latest
++    steps:
++      - uses: actions/checkout@v4
++      - name: Deploy
++        run: npm run deploy
++        env:
++          TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+diff --git a/infra/terraform/main.tf b/infra/terraform/main.tf
+new file mode 100644
+index 0000000..bcd1234
+--- /dev/null
++++ b/infra/terraform/main.tf
+@@ -0,0 +1,5 @@
++resource "aws_s3_bucket" "artifacts" {
++  bucket = "my-deploy-artifacts"
++  acl    = "private"
++}

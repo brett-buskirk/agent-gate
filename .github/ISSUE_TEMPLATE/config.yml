@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://github.com/brett-buskirk/agent-gate#readme
+    about: Check the README for config reference and quickstart.
+  - name: Discussions
+    url: https://github.com/brett-buskirk/agent-gate/discussions
+    about: Questions, ideas, and general discussion.

@@ -1,0 +1,16 @@
+diff --git a/src/auth.ts b/src/auth.ts
+index 0000000..deadbeef 100644
+--- a/src/auth.ts
++++ b/src/auth.ts
+@@ -1,3 +1,10 @@
+ export function authenticate(token: string): boolean {
+   return token.length > 0;
+ }
++
++export function validateToken(token: string): boolean {
++  return /^[A-Za-z0-9_-]{20,}$/.test(token);
++}
++
++export function revokeToken(token: string): void {
++  console.log('revoking', token);
++}

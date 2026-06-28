@@ -1,0 +1,62 @@
+name: Rule request
+description: Propose a new guardrail rule
+labels: ["rule", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        New rules should be deterministic (no LLM), config-driven, and ship with fixture-based tests.
+
+  - type: input
+    id: rule-id
+    attributes:
+      label: Proposed rule ID
+      description: snake_case identifier, e.g. `no_force_push`
+      placeholder: "my_rule_id"
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-it-catches
+    attributes:
+      label: What does it catch?
+      description: Describe the risk signal this rule detects and why it matters for agent PRs.
+    validations:
+      required: true
+
+  - type: textarea
+    id: how-it-works
+    attributes:
+      label: How would it work?
+      description: |
+        Describe the detection logic. What does it scan (file paths, added lines, diff metadata)?
+        What patterns or thresholds trigger it?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Default severity
+      options:
+        - error
+        - warning
+        - info
+    validations:
+      required: true
+
+  - type: textarea
+    id: config
+    attributes:
+      label: Configuration options
+      description: What knobs should be user-configurable in `.agentgate.yml`?
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: duplicate
+    attributes:
+      label: Duplicate check
+      options:
+        - label: I searched existing issues and this is not a duplicate
+          required: true

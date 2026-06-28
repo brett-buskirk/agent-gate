@@ -1,0 +1,30 @@
+name: 'AgentGate'
+description: 'Guardrail checks for AI-agent-generated pull requests'
+author: 'Brett Buskirk'
+
+inputs:
+  github-token:
+    description: 'GitHub token for API access'
+    required: true
+    default: ${{ github.token }}
+  config-path:
+    description: 'Path to .agentgate.yml config file'
+    required: false
+    default: '.agentgate.yml'
+  fail-on:
+    description: 'Minimum severity that fails the check (error | warning | never). Overrides config file.'
+    required: false
+
+outputs:
+  verdict:
+    description: 'Overall verdict: pass | warn | fail'
+  finding-count:
+    description: 'Total number of findings'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
+
+branding:
+  icon: 'shield'
+  color: 'blue'

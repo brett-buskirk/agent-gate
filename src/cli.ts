@@ -1,0 +1,38 @@
+#!/usr/bin/env node
+import { Command } from 'commander';
+import { loadConfig } from './config/load';
+import { GitDiffProvider } from './diff/git';
+import { runEngine } from './engine';
+import { reportCli } from './report/json';
+
+const program = new Command();
+
+program
+  .name('agent-gate')
+  .description('Guardrail checks for AI-agent-generated pull requests')
+  .version('0.1.0');
+
+program
+  .command('check')
+  .description('Run guardrail checks against a diff')
+  .option('-b, --base <ref>', 'Base git ref to diff against', 'main')
+  .option('-c, --config <path>', 'Path to config file', '.agentgate.yml')
+  .option('--json', 'Output results as JSON')
+  .action(async (opts: { base: string; config: string; json: boolean }) => {
+    try {
+      const config = loadConfig(opts.config);
+      const provider = new GitDiffProvider(opts.base);
+      const diff = await provider.getDiff();
+      const result = runEngine(diff, config);
+      reportCli(result, diff, opts.json);
+
+      if (result.verdict === 'fail') {
+        process.exit(1);
+      }
+    } catch (err) {
+      console.error('Error:', err instanceof Error ? err.message : String(err));
+      process.exit(2);
+    }
+  });
+
+program.parse();
