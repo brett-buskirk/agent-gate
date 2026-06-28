@@ -21,12 +21,12 @@
 - [x] Branch protection on `main` (require CI green)
 - [x] npm publish — `@brett.buskirk/agent-gate@0.1.0`
 
-## Sprint 3 — Polish + v1.0
+## Sprint 3 — Polish + v1.0 ✅ (June 2026)
 
-- [ ] Test coverage ≥ 90% enforced in CI
+- [x] Test coverage ≥ 90% enforced in CI (99.7% stmts / 92.8% branches; 58 tests)
+- [x] Nicer CLI output — ANSI color, NO_COLOR-aware, colored severity labels
+- [x] `agentgate init` command scaffolds `.agentgate.yml`, exits 1 if exists
 - [ ] `--base-branch` auto-detection (default to default branch)
-- [ ] Nicer CLI output (color, progress)
-- [ ] `agentgate init` command to scaffold `.agentgate.yml`
 - [ ] GitHub Marketplace draft
 
 ## Future — v2
