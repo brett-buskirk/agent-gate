@@ -4,8 +4,10 @@ node_modules/
 .env.*
 coverage/
 
-# tsc output — published via npm, not committed to git
-# ncc Action bundle (dist/index.js etc.) is committed so GitHub can run it
+# tsc CLI output — published via npm publish, not committed to git
+lib/
+
+# ncc Action bundle — dist/index.js is committed so GitHub can run it without npm install
 dist/*
 !dist/index.js
 !dist/index.js.map

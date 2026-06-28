@@ -4,12 +4,12 @@
   "description": "Guardrail checks for AI-agent-generated pull requests",
   "type": "commonjs",
   "bin": {
-    "agent-gate": "./dist/cli.js",
-    "agentgate": "./dist/cli.js"
+    "agent-gate": "./lib/cli.js",
+    "agentgate": "./lib/cli.js"
   },
-  "main": "./dist/engine.js",
+  "main": "./lib/engine.js",
   "files": [
-    "dist",
+    "lib",
     "action.yml"
   ],
   "scripts": {
