@@ -14,6 +14,9 @@ inputs:
   fail-on:
     description: 'Minimum severity that fails the check (error | warning | never). Overrides config file.'
     required: false
+  anthropic-api-key:
+    description: 'Anthropic API key for the optional LLM intent check (or set the ANTHROPIC_API_KEY env var).'
+    required: false
 
 outputs:
   verdict:

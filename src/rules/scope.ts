@@ -3,7 +3,7 @@ import type { Rule, Finding } from './types';
 import type { DiffModel } from '../diff/parse';
 import type { Config } from '../config/schema';
 
-export const scopeRule: Rule = {
+export const scopeRule = {
   id: 'scope',
   description: 'Flag changes to files outside the allowed scope or inside a denied path set',
 
@@ -42,4 +42,4 @@ export const scopeRule: Rule = {
 
     return findings;
   },
-};
+} satisfies Rule;

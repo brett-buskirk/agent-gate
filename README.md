@@ -124,6 +124,12 @@ rules:
       - "eval\\("
       - "--no-verify"
       - "child_process\\.exec\\("
+
+  intent:                 # opt-in — needs ANTHROPIC_API_KEY
+    enabled: false
+    severity: warning
+    model: claude-haiku-4-5-20251001
+    max_diff_bytes: 60000
 ```
 
 ### `fail_on`
@@ -146,6 +152,42 @@ rules:
 | `tests_required` | warning | Source changes with no corresponding test file changes |
 | `dependencies` | warning | Modified dependency manifests (supply-chain risk) |
 | `dangerous_patterns` | error | User-defined regex denylist applied to added lines |
+| `intent` *(opt-in)* | warning | Uses an LLM to flag changes that go beyond the PR's stated description |
+
+---
+
+## LLM intent check (optional)
+
+The `intent` rule is the one check that isn't deterministic: it asks Claude whether your diff actually does what the PR says it does — catching an agent that quietly did *more*, or *other*, than the description claims. *AI checking AI.*
+
+It's **off by default**. Turn it on in `.agentgate.yml`:
+
+```yaml
+rules:
+  intent:
+    enabled: true
+```
+
+and give it an Anthropic API key — the `ANTHROPIC_API_KEY` env var, or the `anthropic-api-key` Action input:
+
+```yaml
+- uses: brett-buskirk/agent-gate@v1
+  with:
+    github-token: ${{ secrets.GITHUB_TOKEN }}
+    anthropic-api-key: ${{ secrets.ANTHROPIC_API_KEY }}
+```
+
+Locally, supply the intent yourself:
+
+```bash
+agent-gate check --intent "Add a refund flow to the payment processor"
+agent-gate check --intent-file PR_DESCRIPTION.md
+```
+
+Notes:
+- **Never blocks on infrastructure** — a missing key or a failed API call is reported as info, not a failure; your deterministic gate still runs.
+- **Bounded cost** — the diff is summarized and truncated to `max_diff_bytes`; the default model (`claude-haiku-4-5-20251001`) is fast and cheap.
+- **Default severity is `warning`** — LLM judgment is advisory; bump it to `error` if you want it to block.
 
 ---
 

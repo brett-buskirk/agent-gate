@@ -2,7 +2,9 @@ import * as core from '@actions/core';
 import * as github from '@actions/github';
 import { loadConfig } from './config/load';
 import { GitHubDiffProvider } from './diff/github';
+import { anthropicJudge } from './intent/anthropic';
 import { runEngine } from './engine';
+import type { RuleContext } from './rules/types';
 import { upsertComment } from './report/comment';
 import { setCheckOutput } from './report/checkRun';
 import { writeSummary } from './report/summary';
@@ -30,7 +32,24 @@ async function run(): Promise<void> {
     const { owner, repo } = github.context.repo;
     const provider = new GitHubDiffProvider(token, owner, repo, pull_request.number);
     const diff = await provider.getDiff();
-    const result = runEngine(diff, config);
+
+    const intentCfg = config.rules.intent;
+    let context: RuleContext | undefined;
+    if (intentCfg.enabled) {
+      const apiKey = core.getInput('anthropic-api-key') || process.env.ANTHROPIC_API_KEY || '';
+      if (!apiKey) {
+        core.warning('Intent check is enabled but no ANTHROPIC_API_KEY was provided — skipping it.');
+      }
+      context = {
+        pr: {
+          title: (pull_request.title as string | undefined) ?? '',
+          body: (pull_request.body as string | undefined) ?? '',
+        },
+        intentJudge: apiKey ? anthropicJudge({ apiKey, model: intentCfg.model }) : undefined,
+      };
+    }
+
+    const result = await runEngine(diff, config, context);
 
     setCheckOutput(result);
 

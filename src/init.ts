@@ -54,6 +54,14 @@ rules:
       - "eval\\\\("
       - "--no-verify"
       - "child_process"
+
+  # Opt-in LLM check: uses the Anthropic API to judge whether the diff matches
+  # the PR description. Requires ANTHROPIC_API_KEY. Off by default.
+  intent:
+    enabled: false
+    severity: warning
+    model: claude-haiku-4-5-20251001
+    max_diff_bytes: 60000
 `;
 
 export function runInit(configPath: string): void {
