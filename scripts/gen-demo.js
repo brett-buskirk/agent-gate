@@ -26,24 +26,6 @@ const { buildBody } = require('../lib/report/comment');
 const ROOT = path.join(__dirname, '..');
 const ASSETS = path.join(ROOT, 'docs', 'assets');
 
-// --- Run the engine over the sample diff -----------------------------------
-
-const patch = fs.readFileSync(path.join(ROOT, 'test', 'fixtures', 'demo.diff'), 'utf8');
-const diff = parsePatch(patch);
-const config = ConfigSchema.parse({ version: 1 });
-const result = runEngine(diff, config);
-
-// Capture the human CLI output (console.log lines) with color.
-const lines = [];
-const origLog = console.log;
-console.log = (...args) => lines.push(args.join(' '));
-try {
-  reportCli(result, diff, false);
-} finally {
-  console.log = origLog;
-}
-const ansi = lines.join('\n').replace(/^\n+/, '');
-
 // --- ANSI → SVG ------------------------------------------------------------
 
 const COLORS = {
@@ -139,16 +121,35 @@ function renderSvg(rows) {
 `;
 }
 
-// --- Write assets ----------------------------------------------------------
+// --- Main ------------------------------------------------------------------
 
-fs.mkdirSync(ASSETS, { recursive: true });
+async function main() {
+  const patch = fs.readFileSync(path.join(ROOT, 'test', 'fixtures', 'demo.diff'), 'utf8');
+  const diff = parsePatch(patch);
+  const config = ConfigSchema.parse({ version: 1 });
+  const result = await runEngine(diff, config);
 
-const svg = renderSvg(parseAnsi(ansi));
-fs.writeFileSync(path.join(ASSETS, 'cli-demo.svg'), svg);
+  // Capture the human CLI output (console.log lines) with color.
+  const lines = [];
+  const origLog = console.log;
+  console.log = (...args) => lines.push(args.join(' '));
+  try {
+    reportCli(result, diff, false);
+  } finally {
+    console.log = origLog;
+  }
+  const ansi = lines.join('\n').replace(/^\n+/, '');
 
-const commentMd = buildBody(result, diff);
-fs.writeFileSync(path.join(ASSETS, 'sample-pr-comment.md'), commentMd + '\n');
+  fs.mkdirSync(ASSETS, { recursive: true });
+  fs.writeFileSync(path.join(ASSETS, 'cli-demo.svg'), renderSvg(parseAnsi(ansi)));
+  fs.writeFileSync(path.join(ASSETS, 'sample-pr-comment.md'), buildBody(result, diff) + '\n');
 
-console.log(`Generated:
+  console.log(`Generated:
   docs/assets/cli-demo.svg          (verdict: ${result.verdict}, ${result.findings.length} findings)
   docs/assets/sample-pr-comment.md`);
+}
+
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
